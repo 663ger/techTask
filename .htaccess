@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /project/
+
+    # Если запрос не является директорией и не существует как файл
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Перенаправляем на файл с .php
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+    # Если запрос не является директорией и не существует как файл
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Перенаправляем на index.php
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
