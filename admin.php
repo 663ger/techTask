@@ -4,46 +4,51 @@ if (!isset($_GET['admin_key']) || $_GET['admin_key'] !== '1234') {
     echo "Доступ запрещен!";
     exit();
 }
+
 // Подключение к БД
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "my_database";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-<?php
-// Код обработки отправленной формы
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $login = $_POST["login"];
-    $password = $_POST["password"];
-    $confirm_password = $_POST["confirm_password"];
+    // Код обработки отправленной формы
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $login = $_POST["login"];
+        $password = $_POST["password"];
+        $confirm_password = $_POST["confirm_password"];
 
-    // Проверка пароля и его подтверждения
-    if ($password != $confirm_password) {
-        echo "Пароли не совпадают";
-    } else {
-        // Хеширование пароля
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Добавление пользователя в базу данных
-        $sql = "INSERT INTO Users (login, password) VALUES ('$login', '$hashed_password')";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "Пользователь успешно добавлен";
+        // Проверка пароля и его подтверждения
+        if ($password != $confirm_password) {
+            echo "Пароли не совпадают";
         } else {
-            echo "Ошибка при добавлении пользователя: " . $conn->error;
+            // Хеширование пароля
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Добавление пользователя в базу данных
+            $sql = "INSERT INTO Users (login, password) VALUES ('$login', '$hashed_password')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "Пользователь успешно добавлен";
+            } else {
+                echo "Ошибка при добавлении пользователя: " . $conn->error;
+            }
         }
     }
+} finally {
+    
+    if (isset($conn)) {
+        $conn->close();
+    }
 }
-// Закрытие соединения с БД
-$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
