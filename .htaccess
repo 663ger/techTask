@@ -15,5 +15,6 @@
 
     # Перенаправляем на index.php
     RewriteRule ^ index.php [QSA,L]
+    #RewriteRule ^ admin.php [QSA,L]
 </IfModule>
 

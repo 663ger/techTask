@@ -12,7 +12,6 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Код обработки отправленной формы
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $login = $_POST["login"];
         $password = $_POST["password"];
@@ -25,11 +24,11 @@ try {
             $row = $result->fetch_assoc();
             $hashed_password = $row['password'];
 
-            // Проверка пароля
             if (password_verify($password, $hashed_password)) {
                 // Пользователь найден, пароль верен
                 $session_id = md5(uniqid(rand(), true));
-                $cookie_expiration = 86400 * 30;
+
+                $cookie_expiration = isset($_POST['rememberme']) ? 86400 * 30 : 86400;
 
                 setcookie("login", $login, time() + $cookie_expiration, "/");
                 setcookie("SessionID", $session_id, time() + $cookie_expiration, "/");

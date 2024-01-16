@@ -1,86 +1,20 @@
 <?php
-// Проверка ключа в URL
-if (!isset($_GET['admin_key']) || $_GET['admin_key'] !== '1234') {
-    echo "Доступ запрещен!";
+// Путь к файлу с админской страницей
+$adminPagePath = "pages/admin.html";
+
+// Ключ длиной 256 символов
+$adminKey = "ed2f1a7b93c4d8e7a6b1d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b484359345934958349583498593485934853948593485934859gjdfgd;kfjgd;fkjg34534645645645644";
+
+// Получаем параметр key из URL
+$keyFromURL = isset($_GET['key']) ? $_GET['key'] : '';
+
+// Проверяем, соответствует ли ключ ожидаемому ключу и имеет ли длину 256 или более символов
+if ($keyFromURL === $adminKey && strlen($keyFromURL) >= 256) {
+    // Перенаправляем на страницу admin.html
+    $redirect_url = "pages/admin.html";
+    header("Location: $redirect_url");
     exit();
-}
-
-// Подключение к БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_database";
-
-try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Код обработки отправленной формы
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $login = $_POST["login"];
-        $password = $_POST["password"];
-        $confirm_password = $_POST["confirm_password"];
-
-        // Проверка пароля и его подтверждения
-        if ($password != $confirm_password) {
-            echo "Пароли не совпадают";
-        } else {
-            // Хеширование пароля
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Добавление пользователя в базу данных
-            $sql = "INSERT INTO Users (login, password) VALUES ('$login', '$hashed_password')";
-
-            if ($conn->query($sql) === TRUE) {
-                echo "Пользователь успешно добавлен";
-            } else {
-                echo "Ошибка при добавлении пользователя: " . $conn->error;
-            }
-        }
-    }
-} finally {
-    
-    if (isset($conn)) {
-        $conn->close();
-    }
+} else {
+    echo "Ошибка доступа: Неверный ключ!";
 }
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <link rel="stylesheet" href="CSS/style.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-   </head>
-   <body>
-      <div class="content">
-         <div class="text">
-            Добавление нового пользователя
-         </div>
-         <form action="admin.php?admin_key=1234" method="post">
-    <div class="field">
-        <input type="text" name="login" required>
-        <span class="fas fa-user"></span>
-        <label>Логин</label>
-    </div>
-    <div class="field">
-        <input type="password" name="password" required>
-        <span class="fas fa-lock"></span>
-        <label>Пароль</label>
-    </div>
-    <div class="field">
-        <input type="password" name="confirm_password" required>
-        <span class="fas fa-lock"></span>
-        <label>Повторите пароль</label>
-    </div>
-    <button type="submit" class="enter">Добавить пользователя</button>
-</form>
-      </div>
-   </body>
-   <script src="JS/script.js"></script>
-</html>
