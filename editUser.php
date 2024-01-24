@@ -1,14 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_database";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'database.php';
 
 // Получение userId из параметра запроса
 $userId = $_GET['userId'];
@@ -106,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "alert('Данные пользователя успешно обновлены');";
-        echo "window.location = 'user.php';";
+        echo "window.location = 'user.php?key=ed2f1a7b93c4d8e7a6b1d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b4a9c6d5f2c8e3d4b9a7c8e2d3b484359345934958349583498593485934853948593485934859gjdfgd;kfjgd;fkjg34534645645645644';";
     }
     ?>
 </script>

@@ -12,16 +12,7 @@ if ($keyFromURL === $adminKey && strlen($keyFromURL) >= 256) {
     exit();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_database";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'database.php';
 
 // Запрос к базе данных
 $sql = "SELECT ID, first_name, last_name, middle_name, email, login FROM users";

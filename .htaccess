@@ -2,19 +2,22 @@
     RewriteEngine On
     RewriteBase /project/
 
+    # Исключения для прямого доступа к HTML-файлам
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule \.html$ - [L]
+
     # Если запрос не является директорией и не существует как файл
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 
-    # Перенаправляем на файл с .php
-    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+    # Перенаправляем на admin.php, если запрос содержит admin/key
+    RewriteRule ^admin/([^/]*)$ admin.php?key=$1 [QSA,L]
 
     # Если запрос не является директорией и не существует как файл
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
 
-    # Перенаправляем на index.php
+    # Перенаправляем на index.php только если это не .html файл
+    RewriteCond %{REQUEST_URI} !\.html$
     RewriteRule ^ index.php [QSA,L]
-    #RewriteRule ^ admin.php [QSA,L]
 </IfModule>
-

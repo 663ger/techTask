@@ -1,20 +1,8 @@
 <?php
-// Подключение к БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_database";
-
-// Создание подключения
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'database.php';
 
 // Установка кодировки соединения в UTF-8
 mysqli_set_charset($conn, "utf8");
-
-// Проверка подключения
-if ($conn->connect_error) {
-    die("Ошибка подключения: " . $conn->connect_error);
-}
 
 // Обработка HTTP-запроса
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {

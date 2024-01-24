@@ -1,10 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_database";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'database.php';
 
 // Получение данных из AJAX-запроса
 $userId = $_POST['userId'];

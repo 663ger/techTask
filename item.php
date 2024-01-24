@@ -1,16 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_database";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'database.php';
 
 mysqli_set_charset($conn, "utf8");
-
-if ($conn->connect_error) {
-    die("Ошибка подключения: " . $conn->connect_error);
-}
 
 // Получение параметров из URL
 $item = isset($_GET['item']) ? $_GET['item'] : null;

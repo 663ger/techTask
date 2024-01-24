@@ -1,17 +1,7 @@
 <?php
-// Подключение к БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_database";
+include 'database.php';
 
 try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     // Проверка кук и авторизации
     if (!isset($_COOKIE['login']) || !isset($_COOKIE['SessionID'])) {
         $redirect_url = "pages/auth.html?" . http_build_query(['auth' => 'failed']);
@@ -31,9 +21,9 @@ try {
         header("Location: $redirect_url"); // Перенаправление на страницу auth.html с GET-параметром
         exit();
     } else {
-        // Получение информации о пользователе из базы данных
-        $row = $result_check_user->fetch_assoc();
-        echo "Привет, " . $row['login'] . "! Добро пожаловать на сайт!";
+        $redirect_url = "pages/authorized.html";
+        header("Location: $redirect_url");
+        exit();
     }
 
     // Обработка запроса на выдачу ресурсов

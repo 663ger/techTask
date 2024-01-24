@@ -1,17 +1,7 @@
 <?php
-// Подключение к БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "my_database";
+include 'database.php';
 
 try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $login = $_POST["login"];
         $password = $_POST["password"];
@@ -36,13 +26,10 @@ try {
                 // Сохранение SessionID в базе данных
                 $sql_update_session = "UPDATE Users SET session_id = '$session_id' WHERE login = '$login'";
                 $conn->query($sql_update_session);
-
-                // Отправка успешного JSON-ответа
-                $response = array(
-                    'Status' => 'Success',
-                    'Message' => 'Login successful'
-                );
-                echo json_encode($response);
+                
+                // Перенаправление на страницу авторизованного пользователя
+                $redirect_url = "pages/authorized.html";
+                header("Location: $redirect_url");
                 exit();
             } else {
                 // Пользователь найден, но пароль неверен
