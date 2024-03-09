@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
     <link rel="stylesheet" href="../CSS/tasksStyle.css">
-    <title>Администратор: Задачи</title>
+    <title>Задачи</title>
 </head>
-
 <body>
     <header>
         <div class="header-container">
@@ -115,7 +113,20 @@
           </tbody>
         </table>
       </div>
-    
 </body>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var loginContainer = document.querySelector('.login-avatar-container');
+      var loginText = loginContainer.querySelector('.login-text');
+      
+      // Получаем значение куки с логином пользователя
+      var loginCookie = document.cookie.replace(/(?:(?:^|.*;\s*)login\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  
+      // Проверяем, есть ли значение куки с логином
+      if (loginCookie) {
+          loginText.textContent = loginCookie; // Отображаем логин пользователя
+      }
+  });
+  </script>
+  
 </html>

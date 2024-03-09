@@ -1,283 +1,157 @@
 body {
   margin: 0;
+  padding: 0;
+  color: #898989;
   font-family: Inter;
-  overflow: hidden;
-  background-color: #F2F0F0;
+  font-size: 12px;
+  font-style: normal;
+  line-height: normal;
 }
-header {
+
+.container {
+  width: 357px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #FFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: flex-start; /* Align items to the left */
+
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 98px;
+  height: 98px;
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.chat-info {
+  padding-top: 45px;
+  margin-left: 20px;
+  position: absolute;
+  left: 160px;
+}
+
+.chat-icon {
+  position: absolute;
+  left: -30px;
+  scale: 110%;
+}
+
+.header {
+  font-size: 20px;
+  margin-left: 15px; /* Add margin to the left */
+}
+
+.contact-info {
   width: 100%;
-  height: 35px;
-  background-color: #D9D9D9;
+  margin-top: 15px; /* Increase the margin-top for additional spacing */
+}
+
+.input-group {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 9px; /* Space between input groups */
+  
 }
 
-.header-container {
-  display: flex;
+.input-group label {
+  width: 100px;
 }
 
-.nav-item {
-  flex-shrink: 0;
-  position: relative;
-}
-
-.rectangle-9::after {
-  content: "";
-  width: 1px;
-  height: 35px;
-  background: #CFCFCF;
+.icons {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
+  transform: scale(150%);
 }
 
-.rectangle-9 {
-  background: #d9d9d9;
-  width: 93.21px;
-  height: 35px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.rectangle-9 img {
-  width: 30px;
-  height: 30px;
-  flex-shrink: 0;
-}
-
-.rectangle-9.client img {
+.pencil-icon,
+.cross-icon {
+  margin-top: 10px;
   margin-right: 5px;
-  margin-left: 5px;
+  width: 20px;
+  height: 20px;
 }
 
-.rectangle-9.chat img {
-  margin-right: 5px;
-  margin-left: 5px;
+.user-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
-
-.nav-text {
-  width: 39.244px;
-  height: 9.479px;
+.input-group input {
+  width: 187px;
+  height: 22px;
   flex-shrink: 0;
-  color: #5FC3D0;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  padding: 9px;
+  border: 1px solid #ddd;
+  border-radius: 5px; /* Add this line to make the input fields rounded */
+  color: #898989; /* Add this line to set the text color in the input fields */
 }
-
-.client .nav-text {
-  width: 46.112px;
-  height: 9px;
-  color: #FFF;
-}
-
-.chat .nav-text {
-  width: 29.433px;
-  height: 10px;
-  color: #FFF;
-}
-
-.active .rectangle-9 {
-  background-color: #F2F0F0;
-}
-
-.chat .rectangle-9 {
-  z-index: 1;
-}
-
-.chat .rectangle-9::after {
-  content: "";
-  width: 1px;
-  height: 35px;
-  background: #CFCFCF;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.login-avatar-container {
-  display: flex;
-  align-items: center;
-  margin-right: 20px; /* Добавлен отступ справа */
-}
-
-.login-text {
-  margin-right: 5px;
-  width: 34px;
-  height: 12px;
+.input-group select {
+  width: 206px;
+  height: 40px;
   flex-shrink: 0;
-  color: #FFF;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-.header-content {
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  padding: 0 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px; /* Add this line to make the select field rounded */
+  color: #898989; /* Add this line to set the text color in the select field */
+  appearance: none; /* Add this line to remove default select arrow */
+
 }
 
-.second-panel {
-  display: flex;
-  width: 276px;
-  height: 25px;
-  flex-shrink: 0;
-  background-color: #F2F0F0;
-  margin-right: 208px;
+.input-group select:hover {
+  border-color: #aaa; /* Change border color on hover if desired */
 }
 
-.panel-item {
-  width: 69px;
-  height: 25px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+.input-group select:focus {
+  border-color: #5FC3D0; /* Change border color on focus if desired */
+  outline: none; /* Remove outline */
 }
-
-.panel-item:first-child {
-  border-radius: 30px 0 0 30px;
-  background-color: #B3B3B3;
-}
-
-.panel-item:nth-child(2),
-.panel-item:nth-child(3) {
-  background-color: #FFF;
-}
-
-.panel-item:last-child {
-  border-radius: 0 30px 30px 0;
-  background-color: #FFF;
-}
-
-.panel-item:first-child span {
-  color: #FFF;
-  font-family: Inter;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.panel-item:not(:first-child) span {
-  color: #878787;
-  font-family: Inter;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.spacer {
-  flex-grow: 1;
-}
-
-.search-panel {
-  margin-right: 187px;
-  width: 272px;
+.save-button {
+  width: 153px;
   height: 25px;
   flex-shrink: 0;
   border-radius: 30px;
-  background: #FFF;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  overflow: hidden; /* Добавлено для скрытия части input, выходящего за границы */
-}
-
-.search-panel img {
-  margin-left: 3px; /* Уменьшен отступ для изображений */
-  margin-right: 3px; /* Уменьшен отступ для изображений */
-}
-
-.divider {
-  width: 1px;
-  height: 14px;
-  background: #E6E6E6;
-  margin-left: 6px; /* Отступ между Polygon2 и divider */
-  margin-right: 6px; /* Отступ между divider и Search */
-}
-
-.search-panel input {
-  border: none;
-  outline: none;
-  width: calc(100% - 22px); /* Уменьшен ширины поля ввода, чтобы учесть изображения и отступы */
-  height: 25px;
-  font-family: Inter;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-.add-button {
-  margin-left: auto; /* Помещаем кнопку в конец родительского контейнера */
-    margin-right: 10px; /* Отступ справа для разделения от других элементов */
-    width: 153px;
-    height: 25px;
-    flex-shrink: 0;
-    border-radius: 30px;
-    background: #5FC3D0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.add-button span {
+  background: #5FC3D0;
   color: #FFF;
-  font-family: Inter;
+  margin-top: 40px;    
+  margin-left: 100px;
+  cursor: pointer;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-}
-.task-list-container {
-  width: calc(100% - 20px);
-  height: calc(100vh - 94px);
-  background: #FFF;
-  margin-top: 15px;
-  padding: 10px;
-  overflow: auto;
+  border: none; /* Remove border */
+  outline: none; /* Remove outline */
 }
 
-.task-table {
+.save-button:hover {
+  background: #4BAAB3; /* Change color on hover if desired */
+}
+
+.input-group textarea {
   width: 100%;
-  border-collapse: collapse;
+  height: 60px;
+  flex-shrink: 0;
+  padding: 9px;
+  border: 1px solid #ddd;
+  border-radius: 5px; /* Add this line to make the textarea rounded */
+  color: #898989; /* Add this line to set the text color in the textarea */
+  resize: vertical; /* Allow vertical resizing of the textarea */
 }
-
-.task-table th, .task-table td {
-  border: 1px solid #E6E6E6;
-  padding: 8px;
-  text-align: left;
-}
-
-.task-table th {
-  background-color: #F2F0F0;
-  color: #000;
-  font-family: Inter;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-
-
-
-
-
-
-
-
-
-
-

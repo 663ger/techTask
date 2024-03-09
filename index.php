@@ -21,7 +21,7 @@ try {
         header("Location: $redirect_url"); // Перенаправление на страницу auth.html с GET-параметром
         exit();
     } else {
-        $redirect_url = "pages/authorized.html";
+        $redirect_url = "Tasks.php";
         header("Location: $redirect_url");
         exit();
     }

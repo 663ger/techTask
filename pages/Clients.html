@@ -101,5 +101,18 @@
       </div>
     
 </body>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var loginContainer = document.querySelector('.login-avatar-container');
+      var loginText = loginContainer.querySelector('.login-text');
+      
+      // Получаем значение куки с логином пользователя
+      var loginCookie = document.cookie.replace(/(?:(?:^|.*;\s*)login\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  
+      // Проверяем, есть ли значение куки с логином
+      if (loginCookie) {
+          loginText.textContent = loginCookie; // Отображаем логин пользователя
+      }
+  });
+  </script>
 </html>

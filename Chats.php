@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
-    <link rel="stylesheet" href="../CSS/chatsStyle.css">
-    <title>Администратор: Чаты</title>
+    <link rel="stylesheet" href="CSS/chatsStyle.css">
+    <title>Чаты</title>
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="nav-item">
-                <a href="Tasks.html" class="rectangle-9 tasks" style="text-decoration: none;">
-                    <img src="../IMG/image-70.svg" alt="Задачи" width="30" height="30" />
+                <a href="Tasks.php" class="rectangle-9 tasks" style="text-decoration: none;">
+                    <img src="IMG/image-70.svg" alt="Задачи" width="30" height="30" />
                     <span class="nav-text">Задачи</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="Clients.html" class="rectangle-9 client" style="text-decoration: none;">
-                    <img src="../IMG/image-80.svg" alt="Клиенты" width="21" height="21" />
+                <a href="Clients.php" class="rectangle-9 client" style="text-decoration: none;">
+                    <img src="IMG/image-80.svg" alt="Клиенты" width="21" height="21" />
                     <span class="nav-text">Клиенты</span>
                 </a>
             </div>
             <div class="nav-item active">
                 <div class="rectangle-9 chat">
-                    <img src="../IMG/image-90active.svg" alt="Чаты" width="28" height="24" />
+                    <img src="IMG/image-90active.svg" alt="Чаты" width="28" height="24" />
                     <span class="nav-text">Чаты</span>
                 </div>
             </div>
@@ -40,7 +40,7 @@
     </header>
     <div class="header-content">
         <div class="search-panel">
-            <img src="../IMG/Search.svg" alt="Search" />
+            <img src="IMG/Search.svg" alt="Search" />
             <input type="text" />
         </div>
         <div class="add-button"><span>Добавить</span></div>
@@ -130,7 +130,7 @@
         <div class="message-input">
           <input type="text" id="messageInput" placeholder="Введите сообщение" />
           <div class="emoji-button" onclick="toggleEmojiPopup()">
-              <img src="../IMG/Smile.svg" alt="Smile" />
+              <img src="IMG/Smile.svg" alt="Smile" />
               <div class="emoji-popup">
                   <!-- Здесь вы можете разместить ваши смайлики -->
                   <span class="emoji" onclick="insertEmoji('😊')">😊</span>
@@ -140,7 +140,7 @@
               </div>
           </div>
           <div class="send-button">
-              <img src="../IMG/Send.svg" alt="Send" />
+              <img src="IMG/Send.svg" alt="Send" />
           </div>
       </div>    
   <script>
