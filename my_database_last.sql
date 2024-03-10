@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 05 2024 г., 17:03
+-- Время создания: Мар 10 2024 г., 19:53
 -- Версия сервера: 10.4.28-MariaDB
 -- Версия PHP: 8.2.4
 
@@ -32,17 +32,21 @@ CREATE TABLE `clients` (
   `first_name` varchar(100) DEFAULT NULL,
   `middle_name` varchar(100) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
-  `deleted` tinyint(1) DEFAULT 0
+  `deleted` tinyint(1) DEFAULT 0,
+  `company_name` varchar(255) DEFAULT NULL,
+  `contact_phone` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `inn` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `clients`
 --
 
-INSERT INTO `clients` (`id_client`, `first_name`, `middle_name`, `last_name`, `deleted`) VALUES
-(1, 'John', 'Doe', 'Smith', 0),
-(2, 'Alice', 'Jane', 'Johnson', 0),
-(3, 'Bob', 'Michael', 'Brown', 0);
+INSERT INTO `clients` (`id_client`, `first_name`, `middle_name`, `last_name`, `deleted`, `company_name`, `contact_phone`, `email`, `inn`) VALUES
+(1, 'John', 'Doe', 'Smith', 0, 'ООО \"Ромашка\"', '88005553500', 'example@go.com', '8878787878787'),
+(2, 'Alice', 'Jane', 'Johnson', 0, NULL, NULL, NULL, NULL),
+(3, 'Bob', 'Michael', 'Brown', 0, 'ООО \"Бебра\"', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -56,6 +60,14 @@ CREATE TABLE `comments` (
   `comment` text DEFAULT NULL,
   `creation_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `comments`
+--
+
+INSERT INTO `comments` (`id_comment`, `id_issue`, `comment`, `creation_date`) VALUES
+(3, 31, 'hello', '2024-03-10 23:38:32'),
+(4, 31, 'Test', '2024-03-10 23:41:18');
 
 -- --------------------------------------------------------
 
@@ -81,8 +93,8 @@ CREATE TABLE `issues` (
 --
 
 INSERT INTO `issues` (`id_issue`, `id_status`, `id_user`, `id_client`, `id_mark`, `deleted`, `name`, `Description`, `start_time`, `completion_time`) VALUES
-(31, 1, 36, 1, NULL, 0, 'Тестовая задача', '', NULL, NULL),
-(32, 1, 36, 3, NULL, 0, 'Тестовая задача 2', '', NULL, NULL);
+(31, 2, 36, 1, 3, 0, 'Тестовая задача', '', '2024-03-10 23:41:35', '2024-03-10 23:41:50'),
+(32, 2, 36, 3, 3, 0, 'Тестовая задача 2', '', '2024-03-09 23:01:56', '2024-03-09 23:01:59');
 
 -- --------------------------------------------------------
 
@@ -124,9 +136,9 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_messages`, `contact_id`, `sender_id`, `message`, `time`, `deleted`) VALUES
-(1, 1, 35, 'Hello John!', '2024-01-14 16:05:31', 0),
-(2, 2, 35, 'Hi Alice!', '2024-01-14 16:05:31', 0),
-(3, 3, 35, 'Hey Bob!', '2024-01-14 16:05:31', 0);
+(1, 1, 36, 'Hello John!', '2024-01-14 16:05:31', 0),
+(2, 2, 36, 'Hi Alice!', '2024-01-14 16:05:31', 0),
+(3, 3, 36, 'Hey Bob!', '2024-01-14 16:05:31', 0);
 
 -- --------------------------------------------------------
 
@@ -173,8 +185,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `login`, `first_name`, `last_name`, `middle_name`, `email`, `password`, `session_id`, `deleted`, `creation_time`, `last_login_time`) VALUES
-(2, 'testUser', 'Тестик', 'Тестовый', 'Тестович', 'test@mail.ry', '$2y$10$UvsK8FoBpwlkoWJCn0YaUO6K2zowvHm5dqWZqTKKYUr6Z2v6PiLSG', '55a4a35d31749d1564a03c0e1438b007', 0, '2024-02-20 13:43:13', '0000-00-00 00:00:00'),
-(35, 'Roma', NULL, NULL, NULL, NULL, '$2y$10$QhJcftA5H8f.DJSdn2ZkMeeMuJ0tpM4QRVcTQZKoUhV3CL8XTPJCS', '94277dcc1d6843a7b5a0f51fbf90aa8b', 0, '2024-02-25 11:32:38', '2024-03-05 15:54:01');
+(36, 'Ivan', NULL, NULL, NULL, NULL, '$2y$10$t6p/jIYkJj0ZGnsx4gNqsOA78thgRrPDBEFsYBuLSSDa.pDFjylhm', '809a9c53fb33b8a0379f64533858b60f', 0, '2024-03-05 20:00:31', '2024-03-10 18:38:18'),
+(43, 'Roma', NULL, NULL, NULL, NULL, '$2y$10$.wWNfkWBuTUPqf.uXIVjIunsm7NVEeqJYCueTwLhsjJBNuHDbOG1a', '', 0, '2024-03-09 13:31:47', NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -237,19 +249,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `issues`
 --
 ALTER TABLE `issues`
-  MODIFY `id_issue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_issue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT для таблицы `marks`
@@ -273,7 +285,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
